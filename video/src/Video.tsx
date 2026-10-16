@@ -1,30 +1,44 @@
-// The whole video: the soundtrack, then one <Sequence> per scene (scenes live in src/scenes/).
-// A scene's start and end come from the script (cutBefore), never from typed-in seconds.
-//
-//   import { Hook } from './scenes/Hook';      // export const Hook: React.FC<{ from: number }>
-//   const SCENES: Scene[] = [
-//     { id: 'hook', from: 0, to: cutBefore('السطر الثاني'), C: Hook },
-//     ...
-//   ];
 import React from 'react';
 import { AbsoluteFill, Html5Audio, Sequence, staticFile } from 'remotion';
-import { TIMING, toFrame } from './timing';
+import { cutBefore, line, toFrame } from './timing';
+import { Scene1Hook } from './scenes/Scene1Hook';
+import { Scene2Hero } from './scenes/Scene2Hero';
+import { Scene3Specs } from './scenes/Scene3Specs';
+import { Scene4Action } from './scenes/Scene4Action';
+import { Scene5Price } from './scenes/Scene5Price';
+import { Scene6CTA } from './scenes/Scene6CTA';
 
 type Scene = { id: string; from: number; to: number; C: React.FC<{ from: number }> };
-const SCENES: Scene[] = [];
+
+const end = line('التوصيل سريع للدار').end + 1.8;
+
+const SCENES: Scene[] = [
+  { id: 'scene1', from: 0, to: cutBefore('جراب ضد الماء'), C: Scene1Hook },
+  { id: 'scene2', from: cutBefore('جراب ضد الماء'), to: cutBefore('بلاستيك عالي'), C: Scene2Hero },
+  { id: 'scene3', from: cutBefore('بلاستيك عالي'), to: cutBefore('صور وتلعب'), C: Scene3Specs },
+  { id: 'scene4', from: cutBefore('صور وتلعب'), to: cutBefore('والسعر غير'), C: Scene4Action },
+  { id: 'scene5', from: cutBefore('والسعر غير'), to: cutBefore('اطلب الآن'), C: Scene5Price },
+  { id: 'scene6', from: cutBefore('اطلب الآن'), to: end, C: Scene6CTA },
+];
 
 export const Video: React.FC = () => (
-  <AbsoluteFill style={{ backgroundColor: '#000' }}>
-    {TIMING.audio ? <Html5Audio src={staticFile(TIMING.audio)} /> : null}
+  <AbsoluteFill style={{ backgroundColor: '#070A12' }}>
+    {/* Background Music - Kevin MacLeod Beachfront Celebration, ducked */}
+    <Html5Audio src={staticFile('music_beach_clean.mp3')} volume={0.12} />
+
+    {/* User's real voiceover, mastered */}
+    <Html5Audio src={staticFile('user_voice_mastered.mp3')} volume={1.0} />
+
     {SCENES.map((s) => (
-      <Sequence key={s.id} name={s.id} from={toFrame(s.from)} durationInFrames={Math.max(1, toFrame(s.to) - toFrame(s.from))} premountFor={30}>
+      <Sequence
+        key={s.id}
+        name={s.id}
+        from={toFrame(s.from)}
+        durationInFrames={Math.max(1, toFrame(s.to) - toFrame(s.from))}
+        premountFor={30}
+      >
         <s.C from={s.from} />
       </Sequence>
     ))}
-    {SCENES.length === 0 ? (
-      <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', color: '#888', fontFamily: 'sans-serif', fontSize: 40 }}>
-        No scenes yet: the agent builds them in src/scenes/
-      </AbsoluteFill>
-    ) : null}
   </AbsoluteFill>
 );
