@@ -9,7 +9,7 @@ const { fontFamily } = loadFont('normal', { weights: ['700', '900'], subsets: ['
 export const Scene5Price: React.FC<{ from: number }> = ({ from }) => {
   const frame = useCurrentFrame();
   const t = from + toSec(frame);
-  const l = line('والسعر هبال');
+  const l = line('والسعر غير');
 
   const titleIn = prog(t, l.start, l.start + 0.35, Easing.out(Easing.back(1.5)));
   const oldPriceIn = prog(t, l.start + 0.5, l.start + 0.85, Easing.out(Easing.cubic));
