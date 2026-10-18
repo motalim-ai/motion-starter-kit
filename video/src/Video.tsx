@@ -7,6 +7,7 @@ import { Scene3Specs } from './scenes/Scene3Specs';
 import { Scene4Action } from './scenes/Scene4Action';
 import { Scene5Price } from './scenes/Scene5Price';
 import { Scene6CTA } from './scenes/Scene6CTA';
+import { Scene7Packaging } from './scenes/Scene7Packaging';
 
 type Scene = { id: string; from: number; to: number; C: React.FC<{ from: number }> };
 
@@ -18,16 +19,14 @@ const SCENES: Scene[] = [
   { id: 'scene3', from: cutBefore('بلاستيك عالي'), to: cutBefore('صور وتلعب'), C: Scene3Specs },
   { id: 'scene4', from: cutBefore('صور وتلعب'), to: cutBefore('والسعر غير'), C: Scene4Action },
   { id: 'scene5', from: cutBefore('والسعر غير'), to: cutBefore('اطلب الآن'), C: Scene5Price },
-  { id: 'scene6', from: cutBefore('اطلب الآن'), to: end, C: Scene6CTA },
+  { id: 'scene6', from: cutBefore('اطلب الآن'), to: cutBefore('التوصيل سريع للدار'), C: Scene6CTA },
+  { id: 'scene7', from: cutBefore('التوصيل سريع للدار'), to: end, C: Scene7Packaging },
 ];
 
 export const Video: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: '#070A12' }}>
-    {/* Background Music - Kevin MacLeod Beachfront Celebration, ducked */}
-    <Html5Audio src={staticFile('music_beach_clean.mp3')} volume={0.12} />
-
-    {/* User's real voiceover, mastered */}
-    <Html5Audio src={staticFile('user_voice_mastered.mp3')} volume={1.0} />
+    {/* Background music (add your own audio file to public/ for sound) */}
+    {/* <Html5Audio src={staticFile('music_beach_clean.mp3')} volume={0.12} /> */}
 
     {SCENES.map((s) => (
       <Sequence
