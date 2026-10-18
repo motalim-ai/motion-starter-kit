@@ -9,7 +9,7 @@ const { fontFamily } = loadFont('normal', { weights: ['700', '900'], subsets: ['
 export const Scene2Hero: React.FC<{ from: number }> = ({ from }) => {
   const frame = useCurrentFrame();
   const t = from + toSec(frame);
-  const l = line('جبنالك جراب');
+  const l = line('الحل راهو');
 
   const enter = prog(t, l.start, l.start + 0.5, Easing.out(Easing.back(1.4)));
   const prodEnter = prog(t, l.start + 0.2, l.start + 0.8, Easing.out(Easing.cubic));

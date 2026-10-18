@@ -9,7 +9,7 @@ const { fontFamily } = loadFont('normal', { weights: ['700', '900'], subsets: ['
 export const Scene3Specs: React.FC<{ from: number }> = ({ from }) => {
   const frame = useCurrentFrame();
   const t = from + toSec(frame);
-  const l = line('مخدوم ببلاستيك');
+  const l = line('بلاستيك عالي');
 
   const headIn = prog(t, l.start, l.start + 0.4, Easing.out(Easing.cubic));
   const card1In = prog(t, l.start + 0.3, l.start + 0.7, Easing.out(Easing.back(1.3)));

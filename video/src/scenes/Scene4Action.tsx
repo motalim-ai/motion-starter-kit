@@ -9,7 +9,7 @@ const { fontFamily } = loadFont('normal', { weights: ['700', '900'], subsets: ['
 export const Scene4Action: React.FC<{ from: number }> = ({ from }) => {
   const frame = useCurrentFrame();
   const t = from + toSec(frame);
-  const l = line('تصور');
+  const l = line('صور وتلعب');
 
   const in1 = prog(t, l.start, l.start + 0.35, Easing.out(Easing.back(1.5)));
   const in2 = prog(t, l.start + 0.9, l.start + 1.25, Easing.out(Easing.back(1.5)));
