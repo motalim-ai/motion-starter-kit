@@ -1,4 +1,45 @@
-node_modules/
+# Build output
 video/out/
-analysis/
+
+# Node modules
+node_modules/
+package-lock.json
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Secrets / API keys
+.env*
+!.env.example
+
+# Zipped assets
+*.zip
+*.rar
+*.7z
+
+# Audio/video assets that can be re-generated
+video/public/music.wav
+video/public/*_clean.mp3
+video/public/*_mastered.mp3
+video/public/user_voice*.mp3
+video/public/voice*.mp3
+video/public/test.vtt
+video/public/subtitles.srt
+
+# Claude Code workspace artifacts
+.claude/settings.local.json
+.claude/skills/*/SKILL.md
+.agents/skills/*/SKILL.md
+skills-lock.json
+CLAUDE_CODE_SETUP.md
+
+# Scratch / downloaded archives
+caveman.zip
+ponytail.zip
+remotion/
+rtk/
+analyze-plotter.bat
+video/public/landing_page.png
+video/public/music_beach.mp3
+video/public/music_summer.mp3
